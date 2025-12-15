@@ -144,14 +144,16 @@ body{ background:#008080; }
   border-bottom-color:var(--ui-darker);
   padding:10px;
   overflow:auto;
+  display:flex;
 }
 
 .panel{
   background:#fff;
   border:1px solid var(--ui-dark);
   padding:12px;
-  min-height:100%;
+  flex:1;
 }
+
 
 .statusbar{
   display:flex;
