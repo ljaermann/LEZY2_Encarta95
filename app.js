@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
 
-  // Harte Diagnose: Wenn #view fehlt, siehst du es sofort.
+ 
   if (!viewEl) {
     setStatus("FEHLER: #view nicht gefunden. Prüfe index.html: <div id='view'> … </div>");
     console.error("Missing #view element. In index.html muss stehen: <div class='panel' id='view'></div>");
     return;
   }
 
-  // Deine Bilder (du hast bestätigt, dass mind. eines davon live lädt)
+
   const photos = [
     { src: "assets/img/encarta_startbildschirm.png", caption: "Encarta 95 – Startbildschirm" },
     { src: "assets/img/encarta_katalog.png", caption: "Katalog" },
@@ -129,7 +129,7 @@ function renderVideos() {
     (routes[view] || renderStart)();
   }
 
-  // Event Delegation: funktioniert auch, wenn Buttons später/anders gerendert werden.
+
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-view]");
     if (!btn) return;
@@ -138,7 +138,7 @@ function renderVideos() {
     navigate(view);
   });
 
-  // Bestätigung, dass JS läuft:  // Lightbox (einmalig)
+
   const lb = document.createElement("div");
   lb.className = "lightbox";
   lb.innerHTML = `
@@ -170,7 +170,7 @@ function renderVideos() {
     if (e.target === lb) lb.classList.remove("open");
   });
 
-  // Klick auf Bild öffnet Lightbox (Event Delegation)
+
   document.addEventListener("click", (e) => {
     const img = e.target.closest("img[data-full]");
     if (!img) return;
@@ -180,7 +180,6 @@ function renderVideos() {
     lb.classList.add("open");
   });
 
-  // Bestätigung, dass JS läuft:
   setStatus("app.js geladen. Rendering Fotos zum Test …");
   navigate("fotos");
 });
