@@ -145,6 +145,7 @@ body{ background:#008080; }
   padding:10px;
   overflow:auto;
   display:flex;
+  min-width: 0;
 }
 
 .panel{
@@ -152,6 +153,8 @@ body{ background:#008080; }
   border:1px solid var(--ui-dark);
   padding:12px;
   flex:1;
+  width: 100%;
+  min-width: 0;
 }
 
 
