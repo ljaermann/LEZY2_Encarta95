@@ -21,6 +21,10 @@ const media = {
       caption: "MindMaze"
     },
     {
+      src: "assets/img/encarta_information_science.png",
+      caption: "Information Science"
+    },
+    {
       src: "assets/img/encarta_timeline.png",
       caption: "Timeline"
     }
