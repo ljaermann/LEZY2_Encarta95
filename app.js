@@ -112,7 +112,11 @@ function renderVideos() {
   function renderAbout() {
     render(`
       <h2>Über das Projekt</h2>
-      <p>Statische GitHub-Pages-Seite (HTML/CSS/JS) im Encarta-95-Stil.</p>
+      <p>Über das Projekt
+Diese Homepage entstand im Rahmen des Moduls „Lebenszyklus 2“ im Studiengang Information Science an der Fachhochschule Graubünden (FHGR). Gegenstand des Projekts ist die Emulation und dokumentarische Rekonstruktion von Microsoft Encarta 95.
+Im Fokus steht nicht die inhaltliche Nachbildung der Enzyklopädie, sondern die Analyse und Repräsentation von Benutzeroberfläche, Interaktionskonzept und Medienintegration im Kontext des digitalen Lebenszyklus. Die Anwendung dient als Fallstudie zur Auseinandersetzung mit Fragen der Nutzbarhaltung, Zugänglichkeit und Wiederaufführbarkeit historischer Software.
+Die Umsetzung ist als studentisches Lehr- und Forschungsprojekt konzipiert.
+</p>
     `);
     setStatus("Über-Seite geladen.");
   }
