@@ -1,0 +1,199 @@
+:root{
+  --ui-bg: #c0c0c0;
+  --ui-dark: #808080;
+  --ui-darker:#404040;
+  --ui-light:#ffffff;
+  --ui-mid:#dfdfdf;
+  --text:#000;
+  --title:#0a246a;
+  --title-text:#fff;
+}
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; margin:0; font-family:"MS Sans Serif", Tahoma, Arial, sans-serif; color:var(--text); }
+body{ background:#008080; }
+
+.desktop{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+
+.window{
+  width:min(980px, 100%);
+  height:min(640px, 100%);
+  background:var(--ui-bg);
+  border:2px solid var(--ui-light);
+  border-right-color:var(--ui-darker);
+  border-bottom-color:var(--ui-darker);
+  box-shadow: 2px 2px 0 #000;
+  display:flex;
+  flex-direction:column;
+}
+
+.titlebar{
+  background:var(--title);
+  color:var(--title-text);
+  padding:6px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  user-select:none;
+}
+
+.title-left{ display:flex; align-items:center; gap:8px; font-weight:700; }
+.win-icon{
+  width:14px; height:14px;
+  background:linear-gradient(45deg,#ff0,#f00,#00f);
+  border:1px solid rgba(255,255,255,.6);
+}
+
+.title-buttons{ display:flex; gap:4px; }
+.tb{
+  width:26px; height:20px;
+  background:var(--ui-bg);
+  border:2px solid var(--ui-light);
+  border-right-color:var(--ui-darker);
+  border-bottom-color:var(--ui-darker);
+  font-weight:700;
+  line-height:14px;
+  cursor:default;
+}
+.tb:active{
+  border-color:var(--ui-darker);
+  border-right-color:var(--ui-light);
+  border-bottom-color:var(--ui-light);
+}
+.tb.close{ font-weight:900; }
+
+.menubar{
+  display:flex;
+  gap:6px;
+  padding:6px;
+  border-top:1px solid var(--ui-light);
+  border-bottom:1px solid var(--ui-dark);
+  background:var(--ui-bg);
+}
+
+.menu{
+  padding:4px 10px;
+  background:var(--ui-bg);
+  border:2px solid var(--ui-light);
+  border-right-color:var(--ui-darker);
+  border-bottom-color:var(--ui-darker);
+  cursor:pointer;
+  font-size:14px;
+}
+.menu:active{
+  border-color:var(--ui-darker);
+  border-right-color:var(--ui-light);
+  border-bottom-color:var(--ui-light);
+}
+.spacer{ flex:1; }
+
+.content{
+  flex:1;
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  gap:8px;
+  padding:8px;
+}
+
+.sidebar{
+  background:var(--ui-mid);
+  border:2px solid var(--ui-light);
+  border-right-color:var(--ui-darker);
+  border-bottom-color:var(--ui-darker);
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.group-label{
+  font-weight:700;
+  padding:6px 8px;
+  background:var(--ui-bg);
+  border:1px solid var(--ui-dark);
+}
+
+.nav{
+  text-align:left;
+  padding:8px 10px;
+  background:var(--ui-bg);
+  border:2px solid var(--ui-light);
+  border-right-color:var(--ui-darker);
+  border-bottom-color:var(--ui-darker);
+  cursor:pointer;
+}
+.nav:active{
+  border-color:var(--ui-darker);
+  border-right-color:var(--ui-light);
+  border-bottom-color:var(--ui-light);
+}
+
+.hr{ height:1px; background:var(--ui-dark); margin:6px 0; }
+.hint{ font-size:12px; line-height:1.4; }
+
+.main{
+  background:var(--ui-mid);
+  border:2px solid var(--ui-light);
+  border-right-color:var(--ui-darker);
+  border-bottom-color:var(--ui-darker);
+  padding:10px;
+  overflow:auto;
+}
+
+.panel{
+  background:#fff;
+  border:1px solid var(--ui-dark);
+  padding:12px;
+  min-height:100%;
+}
+
+.statusbar{
+  display:flex;
+  gap:6px;
+  padding:6px;
+  border-top:1px solid var(--ui-dark);
+  background:var(--ui-bg);
+}
+.status-item{
+  padding:4px 8px;
+  background:var(--ui-mid);
+  border:1px solid var(--ui-dark);
+  flex:1;
+}
+.status-right{ flex:0; white-space:nowrap; }
+
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap:10px;
+}
+.card{
+  background:var(--ui-bg);
+  border:2px solid var(--ui-light);
+  border-right-color:var(--ui-darker);
+  border-bottom-color:var(--ui-darker);
+  padding:8px;
+}
+.card img, .card video{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid var(--ui-dark);
+  background:#000;
+}
+.card .caption{ margin-top:6px; font-size:12px; }
+
+/* kleine Encarta-Anmutung: "Bildschirm" */
+.splash{
+  border:2px solid var(--ui-dark);
+  background:linear-gradient(#fff, #f2f2f2);
+  padding:12px;
+}
+.splash h2{ margin:0 0 8px 0; }
+.splash p{ margin:0 0 10px 0; }
