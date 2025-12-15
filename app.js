@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   const photos = [
-    { src: "assets/img/encarta_startbildschirm.png", caption: "Encarta 95 – Startbildschirm" },
     { src: "assets/img/encarta_katalog.png", caption: "Katalog" },
     { src: "assets/img/encarta_suchfunktion.png", caption: "Suchfunktion" },
     { src: "assets/img/encarta_feature_mediengalerie.png", caption: "Feature – Mediengalerie" },
