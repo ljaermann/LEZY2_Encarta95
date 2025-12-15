@@ -54,8 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderFotos() {
     const cards = photos.map(p => `
       <div class="card">
-        <img src="${p.src}" alt="${esc(p.caption)}" loading="lazy"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+<img src="${p.src}"
+     data-full="${p.src}"
+     alt="${esc(p.caption)}"
+     loading="lazy"
+     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+
         <div style="display:none; border:1px solid #808080; background:#000; color:#fff; padding:10px; font-size:12px;">
           Bild nicht gefunden<br><code style="color:#fff;">${esc(p.src)}</code>
         </div>
