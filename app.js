@@ -33,6 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
     { src: "assets/img/encarta_timeline.png", caption: "Timeline" },
   ];
 
+  const videos = [
+  { src: "assets/video/encarta_atlas.mp4", caption: "Atlas" },
+  { src: "assets/video/encarta_mindmaze.mp4", caption: "MindMaze" },
+  { src: "assets/video/encarta_navigation.mp4", caption: "Navigation" },
+];
+
+
   function render(html) {
     viewEl.innerHTML = html;
   }
@@ -74,10 +81,34 @@ document.addEventListener("DOMContentLoaded", () => {
     setStatus(`Fotos geladen: ${photos.length} Einträge.`);
   }
 
-  function renderVideos() {
+function renderVideos() {
+  if (!videos.length) {
     render(`<h2>Videos</h2><p>Noch keine Videos eingetragen.</p>`);
     setStatus("Videos geladen: 0 Einträge.");
+    return;
   }
+
+  const cards = videos.map(v => `
+    <div class="card">
+      <video controls preload="metadata" playsinline>
+        <source src="${v.src}" type="video/mp4">
+        Dein Browser unterstützt dieses Videoformat nicht.
+      </video>
+      <div class="caption">${esc(v.caption)}</div>
+      <div style="margin-top:6px; font-size:12px;">
+        <a href="${v.src}" target="_blank" rel="noopener">Video in neuem Tab öffnen</a>
+      </div>
+    </div>
+  `).join("");
+
+  render(`
+    <h2>Videos</h2>
+    <div class="gallery">${cards}</div>
+  `);
+
+  setStatus(`Videos geladen: ${videos.length} Einträge.`);
+}
+
 
   function renderAbout() {
     render(`
