@@ -1,21 +1,28 @@
-(() => {
+document.addEventListener("DOMContentLoaded", () => {
   const viewEl = document.getElementById("view");
   const statusEl = document.getElementById("status");
 
-  function setStatus(t) {
+  const setStatus = (t) => {
     if (statusEl) statusEl.textContent = t;
-  }
+    console.log("[STATUS]", t);
+  };
 
-  function esc(s) {
-    return String(s)
+  const esc = (s) =>
+    String(s)
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
+
+  // Harte Diagnose: Wenn #view fehlt, siehst du es sofort.
+  if (!viewEl) {
+    setStatus("FEHLER: #view nicht gefunden. Prüfe index.html: <div id='view'> … </div>");
+    console.error("Missing #view element. In index.html muss stehen: <div class='panel' id='view'></div>");
+    return;
   }
 
-  // Deine Bilder (funktionieren, da Direktlink lädt)
+  // Deine Bilder (du hast bestätigt, dass mind. eines davon live lädt)
   const photos = [
     { src: "assets/img/encarta_startbildschirm.png", caption: "Encarta 95 – Startbildschirm" },
     { src: "assets/img/encarta_katalog.png", caption: "Katalog" },
@@ -27,10 +34,6 @@
   ];
 
   function render(html) {
-    if (!viewEl) {
-      console.error('Missing #view in index.html');
-      return;
-    }
     viewEl.innerHTML = html;
   }
 
@@ -40,8 +43,8 @@
         <h2>Willkommen.</h2>
         <p>Encarta-95-Style Galerie. Nutze links die Navigation.</p>
         <div class="card">
-          <p><strong>Quick-Check</strong></p>
-          <p>Wenn Bilder fehlen: <code>assets/img/...</code> muss exakt stimmen.</p>
+          <p><strong>Debug</strong></p>
+          <p>Wenn du das hier siehst, läuft <code>app.js</code>.</p>
         </div>
       </div>
     `);
@@ -64,12 +67,12 @@
       <h2>Fotos</h2>
       <div class="gallery">${cards}</div>
     `);
-    setStatus(`Fotos: ${photos.length} Einträge.`);
+    setStatus(`Fotos geladen: ${photos.length} Einträge.`);
   }
 
   function renderVideos() {
     render(`<h2>Videos</h2><p>Noch keine Videos eingetragen.</p>`);
-    setStatus("Videos: 0 Einträge.");
+    setStatus("Videos geladen: 0 Einträge.");
   }
 
   function renderAbout() {
@@ -80,17 +83,27 @@
     setStatus("Über-Seite geladen.");
   }
 
-  const routes = { start: renderStart, fotos: renderFotos, videos: renderVideos, about: renderAbout };
+  const routes = {
+    start: renderStart,
+    fotos: renderFotos,
+    videos: renderVideos,
+    about: renderAbout,
+  };
 
   function navigate(view) {
     (routes[view] || renderStart)();
   }
 
-  // Robust: Klick-Handler für alles mit data-view
-  document.querySelectorAll("[data-view]").forEach(btn => {
-    btn.addEventListener("click", () => navigate(btn.dataset.view));
+  // Event Delegation: funktioniert auch, wenn Buttons später/anders gerendert werden.
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-view]");
+    if (!btn) return;
+    const view = btn.dataset.view;
+    setStatus(`Navigation: ${view}`);
+    navigate(view);
   });
 
-  // WICHTIG: Erzwinge initial die Galerie (zum Test)
+  // Bestätigung, dass JS läuft:
+  setStatus("app.js geladen. Rendering Fotos zum Test …");
   navigate("fotos");
-})();
+});
