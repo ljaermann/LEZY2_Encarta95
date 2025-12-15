@@ -107,7 +107,50 @@ document.addEventListener("DOMContentLoaded", () => {
     navigate(view);
   });
 
+  // Bestätigung, dass JS läuft:  // Lightbox (einmalig)
+  const lb = document.createElement("div");
+  lb.className = "lightbox";
+  lb.innerHTML = `
+    <div class="win">
+      <div class="titlebar">
+        <div class="title-left">
+          <span class="win-icon"></span>
+          <span id="lb-title">Bild</span>
+        </div>
+        <div class="title-buttons">
+          <button class="tb close" id="lb-close">✕</button>
+        </div>
+      </div>
+      <div class="body">
+        <img id="lb-img" alt="">
+      </div>
+    </div>
+  `;
+  document.body.appendChild(lb);
+
+  const lbImg = lb.querySelector("#lb-img");
+  const lbTitle = lb.querySelector("#lb-title");
+
+  lb.querySelector("#lb-close").addEventListener("click", () => {
+    lb.classList.remove("open");
+  });
+
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) lb.classList.remove("open");
+  });
+
+  // Klick auf Bild öffnet Lightbox (Event Delegation)
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("img[data-full]");
+    if (!img) return;
+
+    lbImg.src = img.dataset.full;
+    lbTitle.textContent = img.alt || "Bild";
+    lb.classList.add("open");
+  });
+
   // Bestätigung, dass JS läuft:
   setStatus("app.js geladen. Rendering Fotos zum Test …");
   navigate("fotos");
 });
+
