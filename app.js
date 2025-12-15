@@ -43,19 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
     viewEl.innerHTML = html;
   }
 
-  function renderStart() {
-    render(`
-      <div class="splash">
-        <h2>Willkommen.</h2>
-        <p>Encarta-95-Style Galerie. Nutze links die Navigation.</p>
-        <div class="card">
-          <p><strong>Debug</strong></p>
-          <p>Wenn du das hier siehst, läuft <code>app.js</code>.</p>
-        </div>
-      </div>
-    `);
-    setStatus("Startbildschirm geladen.");
-  }
+function renderStart() {
+  render(`
+    <h2>Startbildschirm</h2>
+    <div class="card" style="max-width:640px;">
+      <img src="assets/img/encarta_startbildschirm.png"
+           alt="Encarta 95 – Startbildschirm"
+           style="width:100%; height:auto;">
+      <div class="caption">Encarta 95 – Startbildschirm</div>
+    </div>
+  `);
+  setStatus("Startbildschirm geladen.");
+}
+
 
   function renderFotos() {
     const cards = photos.map(p => `
